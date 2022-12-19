@@ -1,5 +1,5 @@
-from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 
 
 class UserManager(BaseUserManager):
@@ -30,7 +30,7 @@ class UserManager(BaseUserManager):
 class UserData(AbstractUser):
 
     username = None
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100, unique=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     is_admin = models.BooleanField(default=False)
@@ -45,3 +45,14 @@ class UserData(AbstractUser):
 
     def __str__(self):
         return self.name
+
+
+class Listing(models.Model):
+    listingID = models.AutoField(primary_key=True)
+    productName = models.CharField(max_length=300)
+    clotheType = models.CharField(max_length=25)
+    price = models.DecimalField(max_digits=25, decimal_places=2)
+    size = models.CharField(max_length=5)
+    condition = models.CharField(max_length=50)
+    style = models.CharField(max_length=50)
+    colour = models.CharField(max_length=50)
